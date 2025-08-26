@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Will you forgive me, baby? 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{ --bg1:#fff1f7; --bg2:#e6f3ff; --ink:#2f2a33; --pink:#ff78b9; --pink2:#ffb7d8; --blue:#257ae6; }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0; font-family:"Nunito",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; color:var(--ink); background:linear-gradient(135deg,var(--bg1),var(--bg2)); display:grid; place-items:center; padding:24px}
+    .card{background:#fff; width:min(760px,94vw); border-radius:28px; box-shadow:0 12px 30px rgba(0,0,0,.08); padding:28px 24px; text-align:center}
+    h1{font-family:"Pacifico",cursive; font-weight:400; color:#ff4fa1; font-size:clamp(28px,6vw,48px); margin:6px 0 10px}
+    p.lead{margin:0 auto 18px; max-width:60ch; opacity:.9}
+    .buttons{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:14px}
+    button{font-weight:800; padding:14px 22px; border-radius:999px; border:none; cursor:pointer; box-shadow:0 8px 18px rgba(0,0,0,.08); font-size:18px; transition:0.2s}
+    .yes{background:linear-gradient(135deg,var(--pink),var(--pink2)); color:#fff; position:relative}
+    .no{background:#ecf5ff; color:var(--blue)}
+    .tiny{font-size:12px; opacity:.6; margin-top:8px}
+    .letter{display:none; margin-top:20px; text-align:left}
+    .letter h2{font-family:"Pacifico",cursive; color:#ff4fa1; font-size:clamp(26px,5.6vw,42px)}
+    .letter p{font-size:18px; line-height:1.75; margin:12px 0}
+    .actions{margin-top:16px; display:flex; gap:12px; flex-wrap:wrap}
+    a.pill{padding:12px 18px; border-radius:999px; font-weight:800; text-decoration:none}
+    .call{background:linear-gradient(135deg,#5ccb8a,#9be7c4); color:#0a3d26}
+    .restart{background:#f3f6ff; color:#334}
+  </style>
+</head>
+<body>
+  <audio id="apologyAudio" src="apology.mp3" preload="auto" loop playsinline></audio>
+
+  <main class="card">
+    <h1>Will you forgive me, baby? 💖</h1>
+    <p class="lead">I wasn’t joking. I did something foolish when all I really wanted was to hear your voice. I’m sorry for scaring you.</p>
+    <div class="buttons">
+      <button class="yes" id="yesBtn">Yes 💘</button>
+      <button class="no" id="noBtn">No 🙈</button>
+    </div>
+    <div class="tiny" id="tinyText">(Pretty please?)</div>
+
+    <section class="letter" id="letter">
+      <h2>My Love,</h2>
+      <p>I wasn’t trying to be playful—I was missing you. I missed your voice so badly that instead of simply telling you the truth, I did something foolish. Pretending to be drunk was the wrong way to get close to you, and it only hurt you. I’m deeply sorry.</p>
+      <p>All I wanted was to hear you. Your voice is home to me. Every word, every laugh, every little pause gives me comfort. But instead of admitting how much I needed that, I acted carelessly and made you worry. You deserved tenderness, not panic. You deserved honesty, not a silly act.</p>
+      <p>I take full responsibility for hurting you. No excuses, no defenses. I know trust is fragile, and I stepped on it. I can’t undo that moment, but I can promise to be different from here on. From now on, when I miss you, I’ll tell you directly. When I want to hear you, I’ll say it openly. No more foolishness, only honesty.</p>
+      <p>Please forgive me. Let me make it right with actions: clear words, patience, respect, and love. I want to be the one who calms your heart, not the one who shakes it. I want to be the one who listens when you speak, who cherishes your feelings, who makes you feel safe.</p>
+      <p>Tonight, I just want to hear your voice—because I love you and because I miss you. If you let me, call me, and I’ll listen first. I’ll hear everything you need to say. I’ll learn from this and be better for you, always.</p>
+      <p>I love you endlessly, and I’ll keep proving it—softly, consistently, and with no games. Thank you for being you, and for giving me the chance to love you the right way.</p>
+      <p>Always yours,</p>
+      <p>💞 Yours always</p>
+      <div class="actions">
+        <a class="pill call" href="tel:+97689856020">📞 Call me now</a>
+        <a class="pill restart" href="#" id="restart">↩️ Back to start</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const yesBtn=document.getElementById('yesBtn');
+    const noBtn=document.getElementById('noBtn');
+    const letter=document.getElementById('letter');
+    const audio=document.getElementById('apologyAudio');
+    const tiny=document.getElementById('tinyText');
+
+    yesBtn.addEventListener('click',()=>{
+      letter.style.display='block';
+      yesBtn.style.display='none';
+      noBtn.style.display='none';
+      tiny.style.display='none';
+      audio.muted=false;
+      audio.play().catch(()=>{});
+    });
+
+    const phrases=["Pretty please? 🙈","Try again? 🥺","One more chance? 💗","Are you sure? 😘","Baby please 💞"];
+    let i=0;
+    noBtn.addEventListener('click',(e)=>{
+      e.preventDefault();
+      // Turn the No button into a playful Yes-like button that changes text and moves
+      noBtn.textContent=phrases[i%phrases.length];
+      const x=Math.floor(Math.random()*200)-100;
+      const y=Math.floor(Math.random()*150)-75;
+      noBtn.style.transform=`translate(${x}px,${y}px)`;
+      i++;
+    });
+
+    document.getElementById('restart').addEventListener('click',(e)=>{
+      e.preventDefault(); location.reload();
+    });
+  </script>
+</body>
+</html>
